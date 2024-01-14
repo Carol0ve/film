@@ -1,0 +1,157 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table{
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			td,tr,th{
+				width: 100px;
+				height: 30px;
+				border: 1px solid black;
+				text-align: center;
+			}
+			body{
+				width: 80%;
+				margin: 0 auto;
+			}
+		</style>
+		<script type="text/javascript">
+			function deleRow(a){
+				//通过传参获取他的父级元素tr
+				var tr = a.parentNode.parentNode;
+				//通过remove来进行删除
+				tr.remove();
+			}
+			function updateTab(b){
+				var tr = b.parentNode.parentNode;
+				var cells = tr.cells;
+				console.log(cells.length);
+				//通过cells获取到单元格的一个数组，并赋值给变量
+				var id = cells[0].innerText;
+				var name = cells[1].innerText;
+				var sex = cells[2].innerText;
+				var phone = cells[3].innerText;
+				var address = cells[4].innerText;
+				var ary = [id,name,sex,phone,address];
+				del();
+				addForm(ary,tr);
+			}
+			//因为每次点击更新按钮会出现新的input，所以要把之前的input给删除掉
+			function del(){
+				//通过id获取form标签
+				var form = document.getElementById("form");
+				//通过角标删除form中的input标签，因为每次删除的一个所以form的长度会变化，将长度的值赋值给变量
+				var length = form.length;
+				for(var i = 0;i<length;i++){
+					form.elements[0].remove();
+				}
+			}
+			function addForm(ary,tr){
+				var form = document.getElementById("form");
+				//如果ary为空则创建一个空数组，
+				if(ary == null){
+					ary = new Array(5);
+				}
+				for(var i = 0;i<ary.length;i++){
+					var input = document.createElement("input");
+					var a = ary[i];
+					//如果为空则创建一个空的input框
+					if(a==null){				
+					}else{
+						input.value = ary[i];
+					}
+					form.appendChild(input);
+				}
+				var input = document.createElement("input");
+				//在input标签中添加属性
+				if(tr == null){
+					input.setAttribute("onclick","addInput()");
+					input.setAttribute("type","button");
+					input.setAttribute("value","确认添加");
+					form.appendChild(input);
+				}else{
+					input.setAttribute("type","button");
+					input.setAttribute("value","确认修改");
+					console.log(tr.rowIndex);
+					input.setAttribute("onclick","save("+ tr.rowIndex +")");
+					form.appendChild(input);
+				}
+			}
+			function save(a){
+				//rows获取到行
+				var tr = document.getElementById("tab").rows[a];
+				var form = document.getElementById("form");
+				var length = form.length;
+				//cells获取到单元格的数组
+				var cells = tr.cells;
+				for(var i = 0;i<cells.length-1;i++){
+					//通过for循环赋值给td
+					cells[i].innerText = form.elements[i].value;
+				}
+				del();
+			}
+			function add(){
+				del();
+				addForm(null,null);
+			}
+			function addInput(){
+				var table = document.getElementById("tab");
+				//通过rows返回所有行的一个数组，再用insertRow在最后一行插入数据
+				var tr = table.insertRow(table.rows.length);
+				var form = document.getElementById("form");
+				var length = form.length;
+				for(var i = 0;i<length;i++){
+					//通过insertCell在tr中的最后一个单元格插入数据
+					var td = tr.insertCell(i);
+					//最后将值赋值给单元格
+					td.innerText = form.elements[i].value;
+					//最后一个td直接为固定的
+					if(i == length-1){
+						td.innerHTML = '<input type="button" value="更新" οnclick="updateTab(this)" />' + 
+					'<input type="button" value="删除" οnclick="deleRow(this)" />'
+					}
+				}
+			}
+			function init(){}
+		</script>
+	</head>
+	<body onload="init()">
+		<form id="form"></form>
+		<input type="button" value="添加" onclick="add()" />
+		<table id="tab">
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>手机号</th>
+				<th>地址</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>1001</td>
+				<td>张三</td>
+				<td>男</td>
+				<td>1888888888</td>
+				<td>花果山</td>
+				<td>
+					<input type="button" value="更新" onclick="updateTab(this)" />
+					<input type="button" value="删除" onclick="deleRow(this)" />
+				</td>
+			</tr>
+			<tr>
+				<td>1002</td>
+				<td>李四</td>
+				<td>女</td>
+				<td>16666666666</td>
+				<td>火焰南山</td>
+				<td>
+					<input type="button" value="更新" onclick="updateTab(this)" />
+					<input type="button" value="删除" onclick="deleRow(this)" />
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
