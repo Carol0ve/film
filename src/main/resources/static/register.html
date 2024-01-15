@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="../public/static/js/jquery-1.8.3.min.js"></script>
+	<link rel="stylesheet" href="css/login.css">
+<script src="js/jquery-1.8.3.min.js"></script>
 <meta charset="UTF-8">
 <title>注册</title>
 	<style>
@@ -55,33 +56,20 @@
 	<hr >
 	<br>
 	<br>
-	<table style="width:480px;height: 300px; border-width:3px; border-style: inset;background-color:#66CCFF
-	;border-radius: 20px;border: none">
-		<tr><td colspan=2 style="text-align:center;height:60px;font-size:32px;font-family:微软雅黑">
-		注册</td></tr>
-		<tr>
-		 <td style="text-align:right;height:30px;">账号：</td>
-		<td ><input type=text name="email" value="e-mail address" />
-		<span></span></td>
-		</tr>
+	<form action="" class="login" autocomplete="off">
+		<p>register</p>
+		<input class="email" type="text" placeholder="E-mail">
+		<input class="account" type="text" placeholder="账号">
+		<input class="password" type="password" placeholder="密码">
+		<input class="passwordagin" type="password" placeholder="请再次确认密码">
 
-		<tr>
-		<td style="text-align:right;height:30px;">密码：</td>
-		<td ><input type="password" name="passw1" />
-		<span></span></td>
-		</tr>
-		<tr>
-		<td style="text-align:right;height:30px;">确认密码：</td>
-		<td ><input type="password" name="passw2" />
-		<span></span></td>
-		</tr>
-
-		<tr><td colspan="2" style="text-align:center;border-radius: 20px;width: 200px; height: 50px">
-		<input type=submit name=s value="register" id='inp'>
-			
-		</td></tr>
-	</table>
+		<input class="btn" type="submit" autocomplete="off" value="注  册">
+</form>
 	<br><br><hr >
 </center>
+
+	<script src="./js/jquery-1.4.2.js"></script>	
+	<script src="./js/register.js"></script>
+	
 </body>
 </html>

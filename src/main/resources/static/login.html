@@ -3,7 +3,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../public/static/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" href="css/login.css">
+<script src="js/jquery-1.8.3.min.js"></script>
 	<title>登录界面</title>
 	<style>
 		#ik{
@@ -32,9 +33,14 @@
 		</table>
 		
 	</div>
-	<hr >
+	<form action="" class="login" autocomplete="off">
+		<p>Login</p>
+		<input class="account" type="text" placeholder="账号">
+		<input class="password" type="password" placeholder="密码">
+		<input class="btn" type="submit" autocomplete="off" value="登  录">
+</form>
+	<!-- <hr >
 	<br/><br/>
-	
 		<table style="width:480px;height: 300px; border-width:3px; border-style: inset;background-color:#66CCFF;
 		border-radius: 20px;border: none">
 			<tr><td colspan=2 style="text-align:center;height:60px;font-size:32px;font-family:微软雅黑">登录</td></tr>
@@ -52,7 +58,10 @@
 			
 			</td></tr>
 		</table>
-		<br/><br/><hr >
+		<br/><br/><hr > -->
 	</center>
+
+	<script src="./js/jquery-1.4.2.js"></script>	
+	<script src="./js/login.js"></script>
 </body>
 </html>

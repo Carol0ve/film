@@ -20,7 +20,7 @@ public class UserController {
         String password = (String) map.get("password");
         User user = userService.loginCheck(account, password);
         if (user != null) return Result.success(user).add("token", userService.generateToken(user));
-        else return Result.error("登录失败");
+        else return Result.error("账号或密码输入错误，请重新输入");
     }
 
     //用户注册

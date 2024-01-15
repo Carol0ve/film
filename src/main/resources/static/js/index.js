@@ -77,7 +77,7 @@ function sortMovies(obj) {
             request.year = obj.innerText;
             selectFilmByYear();
         } else {
-            hangshu = 4;
+            hangshu = 4; 
             request.year = obj.innerText;
             selectFilmBeforeYear();
         }

@@ -26,7 +26,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("account", account);
         User user = userMapper.selectOne(queryWrapper);
-        System.out.println(user);
+        if(user==null) return null;
         if (user.getPassword().equals(password)) {
             return user;
         } else return null;
@@ -34,6 +34,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
 
     public boolean userRegister(String email, String username, String account, String password) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        System.out.println(email+" "+username+" "+account+" "+password);
         queryWrapper.eq("email", email);
         if (userMapper.selectOne(queryWrapper) != null) {
             return false;
