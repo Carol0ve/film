@@ -18,7 +18,7 @@ var request = {
 };
 var is_vip = 0;
 $(document).ready(function () {
-	
+
     // 更新vip状态
     var vip1 = document.getElementById("vip1");
     if (is_vip == 1 || localStorage.getItem('') == 1) {
@@ -28,18 +28,17 @@ $(document).ready(function () {
         vip1.innerText = " 非VIP ";
         vip1.style.backgroundColor = "gray";
     }
-	if(table1!=null) {
-		table1.innerHTML = "";
-		if(localStorage.getItem('skip')){
-			localStorage.setItem('skip',0);
-			hangshu = 5;
-			request.actor = localStorage.getItem('movieactors');
-			selectFilmByActor();
-		}else{
-			getfilmlist();
-		}
-	}
-	else selectFilmById();
+    if (table1 != null) {
+        table1.innerHTML = "";
+        if (localStorage.getItem('skip')) {
+            localStorage.setItem('skip', 0);
+            hangshu = 5;
+            request.actor = localStorage.getItem('movieactors');
+            selectFilmByActor();
+        } else {
+            getfilmlist();
+        }
+    } else selectFilmById();
 });
 
 //读取
@@ -48,9 +47,10 @@ var page0 = 1;//页数
 
 var Sort = "";
 var totalpage = 0;
+
 //分类展示
 function sortMovies(obj) {
-	
+
     table1.innerHTML = "";
     page.innerText = 1;
     //连接后端
@@ -77,11 +77,11 @@ function sortMovies(obj) {
             request.year = obj.innerText;
             selectFilmByYear();
         } else {
-            hangshu = 4; 
+            hangshu = 4;
             request.year = obj.innerText;
             selectFilmBeforeYear();
         }
-    } 
+    }
 }
 
 //上一页操作
@@ -102,7 +102,7 @@ function backPage() {
             selectFilmBeforeYear();
         } else if (hangshu == 5) {
             selectFilmByActor();
-        }else{
+        } else {
             getfilmlist();
         }
     }
@@ -126,36 +126,36 @@ function nextPage() {
         selectFilmBeforeYear();
     } else if (hangshu == 5) {
         selectFilmByActor();
-    }else{
+    } else {
         getfilmlist();
     }
 }
 
-	
-function toDetail(id){
-    localStorage.setItem('movieid',id);
-	window.location.href = 'moviedetail.html';
+
+function toDetail(id) {
+    localStorage.setItem('movieid', id);
+    window.location.href = 'moviedetail.html';
 }
 
 function showDetail() {
-    var ID =filmdetial.id;
+    var ID = filmdetial.id;
     var NAME = filmdetial.filmName;
     var INTRO = filmdetial.introduction;
     var SCORE = filmdetial.score;
     var YEAR = filmdetial.year;
-    var ACTORS="";
-    var AREA="";
-    var TYPE="";
+    var ACTORS = "";
+    var AREA = "";
+    var TYPE = "";
     for (var i = 0; i < filmactor.length; i++) {
-        var ts = "<a onclick='toIndex("+filmactor[i]+")' href='index.html'>" + filmactor[i] + "</a>&nbsp;";
+        var ts = "<a onclick='toIndex(" + filmactor[i] + ")' href='index.html'>" + filmactor[i] + "</a>&nbsp;";
         ACTORS += ts;
     }
     for (var i = 0; i < AREAS.length; i++) {
-        var ts =AREAS[i] +"&nbsp;";
+        var ts = AREAS[i] + "&nbsp;";
         AREA += ts;
     }
     for (var i = 0; i < TYPES.length; i++) {
-        var ts = TYPES[i]+"&nbsp;";
+        var ts = TYPES[i] + "&nbsp;";
         TYPE += ts;
     }
     var unit = "<table><tr><td><img id='image' src='img/" + ID + ".jpg' width='300px' height='450px'></td><td><div style='font-size: 25px;'><span>" + NAME + "</span><p><span>" + YEAR + "</span><p><span>";
@@ -172,14 +172,15 @@ function Watchmovie() {
     }
 }
 
-function toIndex(movieactor){
-	 localStorage.setItem('movieactors',movieactor);
-	 localStorage.setItem('skip',1);
-	 window.location.href = 'index.html';
+function toIndex(movieactor) {
+    localStorage.setItem('movieactors', movieactor);
+    localStorage.setItem('skip', 1);
+    window.location.href = 'index.html';
 }
+
 //加载电影在table
 function addMovies() {
-	
+
     var row = 0;
     var column = 0;
     var i = 0;
@@ -199,16 +200,18 @@ function addMovies() {
             var VIP = filmlist[i].needVip;
             var YEAR = filmlist[i].year;
             i++;
-            var unit = "<div id='unit'><a onclick='toDetail("+ID+")'><img src='img/" + ID + ".jpg'/></a><br/><span id='name'>" + NAME + "</span></div>";
+            var unit = "<div id='unit'><a onclick='toDetail(" + ID + ")'><img src='img/" + ID + ".jpg'/></a><br/><span id='name'>" + NAME + "</span></div>";
             cell.innerHTML = unit;//获取单个电影
             column++;
         }
         row++;
     }
 }
-function temp(id){
-    filmIDNow=id
+
+function temp(id) {
+    filmIDNow = id
 }
+
 // function  getfilmlist(){
 //     $.ajax({
 //         url:'/film/all',
@@ -231,7 +234,7 @@ function getfilmlist() {
         success: function (result) {
             filmlist = result.data;
             totalpage = result.map.page;
-			indexdetail = 1;
+            indexdetail = 1;
             addMovies();
         }
     })
@@ -250,7 +253,6 @@ function selectFilmByGenre() {
         }
     })
 }
-
 
 
 function selectFilmById() {

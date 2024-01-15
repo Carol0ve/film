@@ -1,13 +1,7 @@
 var filmlist = [];
 var table1 = document.getElementById("showmovies");
 var request = {
-    "page": 1,
-    "size": 18,
-    "genre": [],
-    "area": "",
-    "sort": "default",
-    "actor": "",
-    "year": ""
+    "page": 1, "size": 18, "genre": [], "area": "", "sort": "default", "actor": "", "year": ""
 };
 //后端读取是否为vip
 var is_vip = 0;
@@ -91,7 +85,7 @@ function addMovies() {
             var VIP = filmlist[i].needVip;
             var YEAR = filmlist[i].year;
             i++;
-            var unit = "<div id='unit'><a onclick='toDetail("+ID+")'><img src='img/" + ID + ".jpg'/></a><br/><span id='name'>" + NAME + "</span></div>";
+            var unit = "<div id='unit'><a onclick='toDetail(" + ID + ")'><img src='img/" + ID + ".jpg'/></a><br/><span id='name'>" + NAME + "</span></div>";
             cell.innerHTML = unit;//获取单个电影
             column++;
         }
@@ -100,9 +94,9 @@ function addMovies() {
 }
 
 //切换到详情页
-function toDetail(id){
-    localStorage.setItem('movieid',id);
-	window.location.href = 'moviedetail.html';
+function toDetail(id) {
+    localStorage.setItem('movieid', id);
+    window.location.href = 'moviedetail.html';
 }
 
 
@@ -257,7 +251,8 @@ function activateVIP(userInfo) {
 function userLogout(token) {
     $.ajax({
 
-        url: '/user/logout', headers: {"Authorization": token},
+        url: '/user/logout',
+        headers: {"Authorization": token},
         type: 'post',
         contentType: 'application/json;charset=utf-8',
 
@@ -270,7 +265,8 @@ function userLogout(token) {
 function inIt(token) {
     $.ajax({
 
-        url: '/index', headers: {"Authorization": token},
+        url: '/index',
+        headers: {"Authorization": token},
         type: 'post',
         contentType: 'application/json;charset=utf-8',
         success: function (result) {
