@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 引入css文件 -->
+        <link rel="stylesheet" href="css/login.css">
+        <!-- 引入jquery -->
+        <script src="js/..."></script>
+        <title>登录</title>
+    </head>
+    <body>
+        <!-- 最外层的大盒子 -->
+       <div class="box">
+        <!-- 滑动盒子 -->
+        <div class="pre-box">
+            <h1>WELCOME</h1>
+            <p>JOIN US!</p>
+            <div class="img-box">
+                <img src="./img/waoku.jpg" alt="">
+            </div>
+        </div>
+        <!-- 注册盒子 -->
+        <div class="register-form">
+            <!-- 标题盒子 -->
+            <div class="title-box">
+                <h1>注册</h1>
+            </div>
+            <!-- 输入框盒子 -->
+            <form action="/user/register" method="post" class="input-box" autocomplete="off">
+                <input class="register_email"        type="text"     placeholder="E-mail">
+                <input class="register_username"     type="text"     placeholder="用户名">
+                <input class="register_account"      type="text"     placeholder="账号">
+                <input class="register_password"     type="password" placeholder="密码">
+                <input class="register_passwordagin" type="password" placeholder="确认密码">
+            </form>
+
+            <!-- 按钮盒子 -->
+            <div class="btn-box">
+                <button class="register_btn" type="submit">注册</button>
+                <!-- 绑定点击事件 -->
+                <p onclick="mySwitch()">已有账号?去登录</p>
+            </div>
+        </div>
+        <!-- 登录盒子 -->
+        <div class="login-form">
+            <!-- 标题盒子 -->
+            <div class="title-box">
+                <h1>登录</h1>
+            </div>
+
+            <!-- 输入框盒子 -->
+            <form action="/user/login" method="post" class="input-box" autocomplete="off">
+                <input class="login_account"    type="text"     placeholder="账号">
+                <input class="login_password"   type="password" placeholder="密码">
+            </form>
+
+            <!-- 按钮盒子 -->
+            <div class="btn-box">
+                <button class="login_btn" type="submit">登录</button>
+                <!-- 绑定点击事件 -->
+                <p onclick="mySwitch()">没有账号?去注册</p>
+            </div>
+        </div>
+       </div>
+       <script src="./js/jquery-1.4.2.js"></script>	
+       <script src="./js/login.js"></script>
+       <script src="./js/register.js"></script>
+    </body>
+</html>
