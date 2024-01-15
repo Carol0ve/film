@@ -1,17 +1,17 @@
-
-//获取输入的用户名和密码
-const account = document.querySelector('.account')
-const password = document.querySelector('.password')
-
-let userInfo = {
-  account: account.value,
-  password: password.value
-};
-
 //获取登录对象并绑定点击事件
 const login = document.querySelector('.btn')
 login.addEventListener('click', function(){
   event.preventDefault();
+
+  //获取输入的用户名和密码
+  const account = document.querySelector('.account')
+  const password = document.querySelector('.password')
+
+  const userInfo = {
+    account: account.value,
+    password: password.value
+  };
+
   if(account.value && password.value){
     $.ajax({
       url: '/user/login',
@@ -21,8 +21,11 @@ login.addEventListener('click', function(){
       success: function (result) {
           // 处理成功的结果或执行成功时的操作
           if (result.code === 1) {
-              //账号密码正确，将账号保存在本地
+            
+              //账号密码正确，将token和账号保存在本地
+              localStorage.setItem('token', result.map.token)
               localStorage.setItem('account', account.value)
+
               //登录成功，跳转到主页面
               window.location.href = './index.html';
           } else {

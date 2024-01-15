@@ -1,22 +1,22 @@
-
-const email = document.querySelector('.email')
-const password = document.querySelector('.password')
-const account = document.querySelector('.account')
-const passwordagin = document.querySelector('.passwordagin')
-
-let userInfo = {
-  email: email.value,
-  username: account.value,
-  password: password.value,
-};
-
 //获取登录对象并绑定点击事件
 const login = document.querySelector('.btn')
 login.addEventListener('click', function(){
   event.preventDefault();
-  
+  const email = document.querySelector('.email')
+  const username = document.querySelector('.username')
+  const account = document.querySelector('.account')
+  const password = document.querySelector('.password')
+  const passwordagin = document.querySelector('.passwordagin')
+
+  const userInfo = {
+    email: email.value,
+    username: username.value,
+    account: account.value,
+    password: password.value,
+  };
+
   //判断是否存在未输入
-  if(email.value && account.value && password.value && passwordagin.value){
+  if(email.value && username.value && account.value && password.value && passwordagin.value){
     // 判断密码是否一致
     if(password.value === passwordagin.value){
         $.ajax({
