@@ -165,4 +165,11 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
         favorite.setEmail(email);
         favoriteMapper.insert(favorite);
     }
+
+    public void deleteFavorite(int id, String token) {
+        String email=userService.getUserByToken(token).getEmail();
+        QueryWrapper<Favorite> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("email",email).eq("id",id);
+        favoriteMapper.delete(queryWrapper);
+    }
 }

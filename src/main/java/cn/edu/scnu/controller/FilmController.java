@@ -119,4 +119,9 @@ public class FilmController {
     public void addToFavorite(@PathVariable String id,@RequestHeader("Authorization") String token){
         filmService.addToFavList(Integer.parseInt(id),token);
     }
+
+    @RequestMapping("/cancelFav/{id}")
+    public void cancelFavorite(@PathVariable String id,@RequestHeader("Authorization") String token){
+        filmService.deleteFavorite(Integer.parseInt(id),token);
+    }
 }
