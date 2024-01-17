@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<meta charset="utf-8">
+		<title>我的收藏</title>
+	</head>
+	<style type="text/css">
+	body a{
+		/* color: white; */
+		margin-left: 5px;
+		margin-right: 5px;
+		font-size: 18px; 
+		color: #000000;
+	}
+	#unit{
+		width: 230px;
+		height: 380px;
+	}
+	#name{
+		color: #FF0000;
+	}	
+	#unit img{
+		 border:0 ;
+		 height:290px;
+		 width:200px;
+	}
+	
+	#daohang li{
+		margin-left: -70px;
+		margin-right: 200px;
+		float: left;
+	}
+	li:hover{background-color: yellowgreen;
+	}
+	#vip1{
+		font-size:25px;
+		text-decoration:none;
+		color: gold ;
+		border: 1px solid black;
+	}	
+	#showmovies{
+		font-size: 20px;
+	}
+		
+	#showmovies tr{
+		background-color:#FFE6FF;
+		border-radius: 15px;
+	}
+		
+		
+	#text1{
+		width: 600px;
+		height: 170px;
+		text-align: left;
+	}
+		
+	#img1{
+		width: 130px ;
+		height: 170px;
+		float: left;
+		background-color: #CA141D;
+	}
+	</style>
+	<center>
+	<body>
+		
+		<!-- 头部 -->
+		<div style="height: 98px;">
+			<table style="width: 93%;height: 40px;" >
+			<tr>
+				<td style="font-size:36px;height: 0px;font-family: '华文彩云';letter-spacing: 3px;color: #66CCFF"><b>极点电影网</b>
+				<td style="float: right;line-height: 30px;">
+					<a onclick="Logout()" style="font-size:20px;text-decoration:underline;"><b>退出登录</b></a>&nbsp;&nbsp;
+					<span id="vip1" style="background-color: #999999;"><b>非VIP</b></span>
+				</td>
+			<!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
+			</tr>
+			</table>
+			<!-- 导航栏 -->
+		
+			<div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color: #85dbff;">
+		
+				<ul style=" list-style: none;margin-left: 28%">
+				<li>
+					<a href="index.html" style="text-decoration:none;">
+						<span style=" color:black; font-weight:bold; font-size:30px; font-family:楷体">主页</span></a>
+				</li>	
+				<li>
+					<a href="rank.html"  style=" text-decoration:none;">
+						<span style=" color:black; font-weight:bold; font-size:30px; font-family:楷体">排行</span></a>
+				</li>
+				<li>
+					<a href="member.html" style="text-decoration:none;">
+						<span style=" color:black; font-weight:bold; font-size:30px; font-family:楷体">会员专享</span></a>
+				</li>
+					<li>
+						<a href="user.html" style="text-decoration:none;">
+							<span style=" color:black; font-weight:bold; font-size:30px; font-family:楷体">个人</span></a>
+					</li>
+				</ul>
+		
+			</div>
+		</div>
+		
+		<!-- 主体内容 -->
+
+		<div id="collectlist" style="width: 100%; height: 80px; background-color: azure" >
+			<div id="" style="width: 100%; height: 30px;">
+				<span style=" background-color: #1dcb1d; color: white;font-size: 25px; border-radius: 10px;">&nbsp;&nbsp;我的收藏&nbsp;&nbsp;</span>
+			</div>
+			
+			<hr >
+			<div style="width: 100%;">
+				<table id="showmovies">	
+				
+					
+				</table>
+			</div>	
+			<hr>
+		</div>
+	</body>
+	</center>
+	<script type="text/javascript" src="js/collect.js">
+	</script>
+</html>

@@ -1,6 +1,5 @@
-<!-- 下面的图片或js或css路径将 “__ROOT__”改为了 “../../” -->
 <!DOCTYPE HTML>
-<html lang="zh">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<script src="js/jquery-1.8.3.min.js"></script>	
@@ -16,22 +15,33 @@
 		/* color: white; */
 		margin-left: 5px;
 		margin-right: 5px;
-		font-size: 18px; 
-		color: #000000;
+		font-size: 20px; 
+		color: white;
 	}
 	
 	#sortlist li{		
 		float: left;
 		list-style-type: none;
-		margin-left: 10px;
-		border: 1px solid #9ACD32;
+		margin-left: 5px;
+		border: 1px solid #383acd;
 		border-radius: 5px;
-		background-color: #FFFFFF;
+		background-color: #000000;
+		font-family: 楷体;
+		font-weight: bold;
 	}
 	#sortlist li:hover{
 		background-color:pink;	
 		}
-
+		
+	#unit{
+		color: #f8ffa4;
+		font-weight: bold;
+		width: 230px;
+		height: 380px;
+	}
+	#name{
+		color: #FF0000;
+	}	
 	#unit img{
 		 border:0 ;
 		 height:290px;
@@ -50,35 +60,24 @@
 		text-decoration:none;
 		color: gold ;
 		border: 1px solid black;
-	}
-	#unit{
-		width: 200px;
-		height: 380px;
-	}
-	#name{
-		color: #FF0000;
-	}
-	#movielist>table>tbody tr {
-		width: 1500px;
-		display: flex;
-		justify-content: space-between;
-	}
+	}	
+	
 	</style>
-	<title></title>
-
-
+	
+	
 </head>
 
-<!-- <body background="img/1.jpg" style=" background-size:100%;"> -->
-<body>
+<body background="img/1.jpg" style=" background-size:100%;">
+<!-- <body> -->
 <center>
 	<!-- 头部 -->
+	
 	<div style="height: 98px;">
 		<table style="width: 93%;height: 40px;" >
 		<tr>
-			<td style="font-size:36px;height: 0px;font-family: 楷体;"><b>极点电影网</b>
+			<td style="font-size:36px;height: 0px;font-family: '华文彩云';letter-spacing: 3px;color: #66CCFF"><b>极点电影网</b>
 			<td style="float: right;line-height: 30px;">
-				<a href="login_register.html" target="mainframe" style="font-size:20px;text-decoration:underline;"><b>退出登录</b></a>&nbsp;&nbsp;
+				<a onclick="Logout()" style="font-size:20px;text-decoration:underline; color: #F3F3F3;"><b>退出登录</b></a>&nbsp;&nbsp;
 				<span id="vip1" style="background-color: #999999;"><b>非VIP</b></span>
 			</td>
 		<!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
@@ -86,9 +85,9 @@
 		</table>
 		<!-- 导航栏 -->
 	
-		<div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#3CB371;">
+		<div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#242584;">
 	
-			<ul style=" list-style: none;margin-left: 35%">
+			<ul style=" list-style: none;margin-left: 28%">
 			<li>
 				<a href="index.html" style="text-decoration:none;">
 					<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">主页</span></a>
@@ -99,15 +98,19 @@
 			</li>
 			<li>
 				<a href="member.html" style="text-decoration:none;">
-					<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">会员</span></a>
+					<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">会员专享</span></a>
 			</li>
+				<li>
+					<a href="user.html" style="text-decoration:none;">
+						<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">个人</span></a>
+				</li>
 			</ul>
 	
 		</div>
 	</div>
 	
 	<!-- 主体 -->
-	<div id="content1" style="height: 1500px;background-color: beige; width: 100%;">
+	<div id="content1" style="height: 1500px; width: 100%;">
 		<!-- 筛选队列 -->
 		<div id="sortlist" style="color: white; background-color: rgba(100,200,200,0.3);height: 180px;width: 100%; ">
 			<div style="margin-left: 0px; float: left;">
@@ -172,11 +175,7 @@
 				<div style=" float: left;">	
 					<ul id="year">
 						<li style="margin-left: 0px; border: 0px solid #000000;background-color: dodgerblue;"><span style="font-size:22px ; color: white;"><b>&nbsp;年代&nbsp;</b></span></li>
-						<li><a   onclick="sortMovies(this)">2023</a></li>
-						<li><a   onclick="sortMovies(this)">2022</a></li>
-						<li><a   onclick="sortMovies(this)">2021</a></li>
 						<li><a   onclick="sortMovies(this)">2020</a></li>
-						<li><a   onclick="sortMovies(this)">2019</a></li>
 						<li><a   onclick="sortMovies(this)">2010</a></li>
 						<li><a   onclick="sortMovies(this)">2000</a></li>
 						<li><a   onclick="sortMovies(this)">1990</a></li>
@@ -188,26 +187,26 @@
 			</div>
 		</div>
 		<!-- 展示的电影单 -->
-		<div id="movielist" style=" width: 100%; font-size: 18px; height: 1160px; float:left;" >
-			<table id="showmovies" style="margin: 0 auto;">
-
+		<div id="movielist" style=" width: 100%; font-size: 18px; height: 1160px;background-color: rgba(150,100,150,0.5);  float:left;" >
+			<table id="showmovies" style="margin-left:0px">
+				
 			</table>	
 		</div>
 		<hr>
 		<div id="" style="margin-top: 10px; width: 100%;height: 50px;">
 			<button onclick="backPage()"  style="font-size: 18px;width: 70px;height: 30px;">上一页</button>
 			第<span id="page" style="font-size: 20px;">1</span>页
-			<button onclick="nextPage()" style="font-size: 18px;width: 70px;height: 30px;" >下一页</button>
+			<button onclick="nextPage()" style="font-size: 18px;width: 70px;height: 30px;" onclick="#">下一页</button>
 		</div>
 	</div>
 	<!-- <div class="test1">
 			<img id="pic" src="../public/static/picture/index/pic1.jpg" width="999" height="460">	
 	</div>	 -->
 		
-	<!-- 最近上映 -->
-
-
-
+	<!-- 最近上映 -->	
+	
+		
+	
 
 </center>
 </body>

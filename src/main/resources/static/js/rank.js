@@ -1,14 +1,20 @@
 var filmlist = [];
 var table1 = document.getElementById("showmovies");
 var request = {
-    "page": 1, "size": 18, "genre": [], "area": "", "sort": "default", "actor": "", "year": ""
+    "page": 1,
+    "size": 18,
+    "genre": [],
+    "area": "",
+    "sort": "default",
+    "actor": "",
+    "year": ""
 };
 //后端读取是否为vip
-var is_vip = 0;
+var is_vip = localStorage.getItem('is_vip');
 
 $(document).ready(function () {
     var vip1 = document.getElementById("vip1");
-    if (is_vip == 1) {
+    if (is_vip == "yes") {
         vip1.innerText = " VIP ";
         vip1.style.backgroundColor = "red";
     } else {
@@ -85,7 +91,7 @@ function addMovies() {
             var VIP = filmlist[i].needVip;
             var YEAR = filmlist[i].year;
             i++;
-            var unit = "<div id='unit'><a onclick='toDetail(" + ID + ")'><img src='img/" + ID + ".jpg'/></a><br/><span id='name'>" + NAME + "</span></div>";
+            var unit = "<div id='unit'><a onclick='toDetail("+ID+")'><img src='img/" + ID + ".jpg'/></a><br/><span id='name'>" + NAME + "</span></div>";
             cell.innerHTML = unit;//获取单个电影
             column++;
         }
@@ -94,24 +100,12 @@ function addMovies() {
 }
 
 //切换到详情页
-function toDetail(id) {
-    localStorage.setItem('movieid', id);
-    window.location.href = 'moviedetail.html';
+function toDetail(id){
+    localStorage.setItem('movieid',id);
+	window.location.href = 'moviedetail.html';
 }
 
 
-// function  getfilmlist(){
-//     $.ajax({
-//         url:'/film/all',
-//         type:'post',
-//         contentType:'application/json;charset=utf-8',
-//         data:JSON.stringify(request),
-//         success:function(result){
-// 		filmlist = result.data;
-// 		addMovies();
-//     }
-//     })
-// }
 
 function getfilmlist() {
     $.ajax({
@@ -127,151 +121,26 @@ function getfilmlist() {
     })
 }
 
-function selectFilmByGenre() {
-    $.ajax({
-        url: '/film/genre',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(request),
-        success: function (result) {
-            filmlist = result.data;
-            totalpage = result.map.page;
-            addMovies();
-        }
-    })
-}
 
-function selectFilmByArea() {
-    $.ajax({
-        url: '/film/area',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(request),
-        success: function (result) {
-            filmlist = result.data;
-            totalpage = result.map.page;
-            addMovies();
-        }
-    })
-}
-
-function selectFilmByYear() {
-    $.ajax({
-        url: '/film/yearIn',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(request),
-        success: function (result) {
-            filmlist = result.data;
-            totalpage = result.map.page;
-            addMovies();
-        }
-    })
-}
-
-function selectFilmBeforeYear() {
-    $.ajax({
-        url: '/film/yearBefore',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(request),
-        success: function (result) {
-            filmlist = result.data;
-            totalpage = result.map.page;
-            addMovies();
-        }
-    })
-}
-
-function selectFilmByActor() {
-    $.ajax({
-        url: '/film/actor',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(request),
-        success: function (result) {
-            filmlist = result.data;
-            totalpage = result.map.page;
-            addMovies();
-        }
-    })
-}
-
-// function  selectFilmByGenre(request){
-//     $.ajax({
-//         url:'/film/genre',
-//         type:'post',
-//         contentType:'application/json;charset=utf-8',
-//         data:JSON.stringify(request),
-//         success:function(result){
-// 		addMovies();
-//         }
-//     })
-// }
-
-function userLogin(userInfo) {
-    $.ajax({
-
-        url: '/user/login',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(userInfo),
-        success: function (result) {
-
-        }
-    })
-}
-
-function userRegister(userInfo) {
-    $.ajax({
-
-        url: '/user/register',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(userInfo),
-        success: function (result) {
-
-        }
-    })
-}
-
-function activateVIP(userInfo) {
-    $.ajax({
-
-        url: '/user/vip',
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        data: JSON.stringify(userInfo),
-        success: function (result) {
-
-        }
-    })
-}
-
-function userLogout(token) {
-    $.ajax({
-
-        url: '/user/logout',
-        headers: {"Authorization": token},
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-
-        success: function (result) {
-
-        }
-    })
-}
-
-function inIt(token) {
-    $.ajax({
-
-        url: '/index',
-        headers: {"Authorization": token},
-        type: 'post',
-        contentType: 'application/json;charset=utf-8',
-        success: function (result) {
-
-        }
-    })
-}
+//退出登录删除所有本地数据
+function Logout(){
+	localStorage.setItem('login_token',"0");//防止为空
+	localStorage.removeItem('login_token');
 	
+	localStorage.setItem('login_account',"0");//防止为空
+	localStorage.removeItem('login_account');
+	
+	localStorage.setItem('is_vip',"0");//防止为空
+	localStorage.removeItem('is_vip');
+	
+	localStorage.setItem('movieid',1);//防止为空
+	localStorage.removeItem('movieid');
+	
+	localStorage.setItem('movieactors',"Tony");//防止为空
+	localStorage.removeItem('movieactors');
+	
+	localStorage.setItem('skip',1);//防止为空
+	localStorage.removeItem('skip');
+	
+	window.location.href = 'login_register.html';
+}

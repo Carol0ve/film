@@ -43,43 +43,54 @@
         font-size: 20px;
     }
 
+	#watch button{
+		width: 200px;
+		height: 60px;
+		font-size: 25px;
+		border: 0px;
+		border-radius: 10px;
+		font-weight: bold;
+	}
 </style>
 <center>
     <body>
 
     <!-- 头部 -->
     <div style="height: 98px;">
-        <table style="width: 93%;height: 40px;">
-            <tr>
-                <td style="font-size:36px;height: 0px;font-family: 楷体;"><b>极点电影网</b>
-                <td style="float: right;line-height: 30px;">
-                    <a href="login.html" target="mainframe"
-                       style="font-size:20px;text-decoration:underline;"><b>退出登录</b></a>&nbsp;&nbsp;
-                    <span id="vip1" style="background-color: #999999;"><b>非VIP</b></span>
-                </td>
-                <!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
-            </tr>
-        </table>
-        <!-- 导航栏 -->
-
-        <div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#3CB371;">
-
-            <ul style=" list-style: none;margin-left: 35%">
-                <li>
-                    <a href="index.html" style="text-decoration:none;">
-                        <span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体"> 主页</span></a>
-                </li>
-                <li>
-                    <a href="rank.html" style=" text-decoration:none;">
-                        <span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">排行</span></a>
-                </li>
-                <li>
-                    <a href="member.html" style="text-decoration:none;">
-                        <span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体"> 会员</span></a>
-                </li>
-            </ul>
-
-        </div>
+    	<table style="width: 93%;height: 40px;" >
+    	<tr>
+    		<td style="font-size:36px;height: 0px;font-family: '华文彩云';letter-spacing: 3px;color: #66CCFF"><b>极点电影网</b>
+    		<td style="float: right;line-height: 30px;">
+    			<a onclick="Logout()" style="font-size:20px;text-decoration:underline;"><b>退出登录</b></a>&nbsp;&nbsp;
+    			<span id="vip1" style="background-color: #999999;"><b>非VIP</b></span>
+    		</td>
+    	<!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
+    	</tr>
+    	</table>
+    	<!-- 导航栏 -->
+    
+    	<div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#3CB371;">
+    
+    		<ul style=" list-style: none;margin-left: 28%">
+    		<li>
+    			<a href="index.html" style="text-decoration:none;">
+    				<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">主页</span></a>
+    		</li>	
+    		<li>
+    			<a href="rank.html"  style=" text-decoration:none;">
+    				<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">排行</span></a>
+    		</li>
+    		<li>
+    			<a href="member.html" style="text-decoration:none;">
+    				<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">会员专享</span></a>
+    		</li>
+    			<li>
+    				<a href="user.html" style="text-decoration:none;">
+    					<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">个人</span></a>
+    			</li>
+    		</ul>
+    
+    	</div>
     </div>
 
 
@@ -95,8 +106,10 @@
         </div>
         <hr>
         <div id="watch">
-            <button onclick="Watchmovie()"
-                    style="width: 200px; height: 60px; font-size: 30px;background-color: #FDEE4E;">立即观看
+			<button onclick="changeCollect(this)" style="background-color: gold">收藏
+			</button>
+			&nbsp;
+            <button onclick="watchMovie()" style="background-color: lightgreen">立即观看
             </button>
         </div>
     </div>
