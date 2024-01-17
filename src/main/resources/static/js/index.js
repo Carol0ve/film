@@ -42,14 +42,15 @@ $(document).ready(function () {
 		}
 	}else{
 		selectFilmById();
+		var collectButton = document.getElementById("collectMovie");
 		if(collect1 =="yes"){
-			obj.innerText = "已收藏";
-			obj.style.backgroundColor = "lightyellow";
-			obj.style.color = "grey";
+			collectButton.innerText = "已收藏";
+			collectButton.style.backgroundColor = "lightyellow";
+			collectButton.style.color = "grey";
 		}else{
-			obj.innerText = "收藏";
-			obj.style.backgroundColor = "gold";
-			obj.style.color = "black";
+			collectButton.innerText = "收藏";
+			collectButton.style.backgroundColor = "gold";
+			collectButton.style.color = "black";
 		}
 	} 
 });
@@ -89,7 +90,7 @@ function sortMovies(obj) {
             selectFilmByYear();
         } else {
             hangshu = 4;
-            request.year = obj.innerText;
+            request.year = obj.innerText + 10;
             selectFilmBeforeYear();
         }
     } 
@@ -249,18 +250,20 @@ function Logout(){
 }
 
 //点击收藏和取消收藏
-function changeCollect(obj){		
+function changeCollect(){		
+	
+	var collectButton = document.getElementById("collectMovie");
 	if(collect1 =="no"){
 		collect1 = "yes";
-		obj.innerText = "已收藏";
-		obj.style.backgroundColor = "lightyellow";
-		obj.style.color = "grey";
+		collectButton.innerText = "已收藏";
+		collectButton.style.backgroundColor = "lightyellow";
+		collectButton.style.color = "grey";
 		addToFavorite();
 	}else{
 		collect1 = "no";
-		obj.innerText = "收藏";
-		obj.style.backgroundColor = "gold";
-		obj.style.color = "black";
+		collectButton.innerText = "收藏";
+		collectButton.style.backgroundColor = "gold";
+		collectButton.style.color = "black";
 		cancelFavorite();
 	}
 }
@@ -269,7 +272,7 @@ function changeCollect(obj){
 function addToFavorite(){
 	var id = localStorage.getItem('movieid');
 	$.ajax({
-	    url: '/film/addToFav/' + id ,
+	    url: '/addToFav/' + id ,
 	    type: 'post',
 	    contentType: 'application/json;charset=utf-8',
 	    data: JSON.stringify(request),
@@ -286,7 +289,7 @@ function addToFavorite(){
 function cancelFavorite(){
 	var id = localStorage.getItem('movieid');
 	$.ajax({
-	    url: '/film/cancelFav/' + id ,
+	    url: '/cancelFav/' + id ,
 	    type: 'post',
 	    contentType: 'application/json;charset=utf-8',
 	    data: JSON.stringify(request),
