@@ -31,7 +31,7 @@ $(document).ready(function () {
 //加载电影在table
 function addMovies() {
     var row = 0;//行数
-	if(filmlist==0){
+	if(filmlist.length==0){
 		var rows = table1.insertRow(row);
 		var height1 = collectsdiv.offsetHeight;
 		height1 += 40;
@@ -41,10 +41,10 @@ function addMovies() {
 	}else{
 		while (row < filmlist.length) {
 		    var rows = table1.insertRow(row);
-			var ID =filmdetial[row].id;
-			var NAME = filmdetial[row].filmName;
-			var SCORE = filmdetial[row].score;
-			var YEAR = filmdetial[row].year;
+			var ID =filmlist[row].id;
+			var NAME = filmlist[row].filmName;
+			var SCORE = filmlist[row].score;
+			var YEAR = filmlist[row].year;
 			var VIP = filmlist[row].needVip;
 			
 			var unit = "<td><div id='img1'><a onclick='toDetail("+ID+")'><img src='img/"+ID+".jpg' width='120px' height='170px'/></a></div></td><td><div id='text1'><span>"+NAME+"</span><p><span>"+SCORE+"</span><p><span>"+YEAR+"</span><p><span>need vip:"+VIP+"</span></div></td>";
