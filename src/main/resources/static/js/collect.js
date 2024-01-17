@@ -72,6 +72,9 @@ function selectFilmByCollect() {
         type: 'post',
         contentType: 'application/json;charset=utf-8',
         data: JSON.stringify(request),
+		headers: {
+		    "Authorization": localStorage.getItem('login_token')
+		},
         success: function (result) {
             filmlist = result.data;
             addMovies();
