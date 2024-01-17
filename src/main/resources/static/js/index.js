@@ -89,7 +89,7 @@ function sortMovies(obj) {
             selectFilmByYear();
         } else {
             hangshu = 4;
-            request.year = obj.innerText + 10;
+            request.year = obj.innerText;
             selectFilmBeforeYear();
         }
     } 
@@ -269,7 +269,7 @@ function changeCollect(obj){
 function addToFavorite(){
 	var id = localStorage.getItem('movieid');
 	$.ajax({
-	    url: '/addToFav/' + id ,
+	    url: '/film/addToFav/' + id ,
 	    type: 'post',
 	    contentType: 'application/json;charset=utf-8',
 	    data: JSON.stringify(request),
@@ -286,7 +286,7 @@ function addToFavorite(){
 function cancelFavorite(){
 	var id = localStorage.getItem('movieid');
 	$.ajax({
-	    url: '/cancelFav/' + id ,
+	    url: '/film/cancelFav/' + id ,
 	    type: 'post',
 	    contentType: 'application/json;charset=utf-8',
 	    data: JSON.stringify(request),
