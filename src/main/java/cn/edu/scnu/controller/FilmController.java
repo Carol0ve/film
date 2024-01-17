@@ -83,10 +83,19 @@ public class FilmController {
 
     //根据ID获取电影演员列表
     @RequestMapping("/{id}")
-    public Result<List<String>> getSingleFilm(@PathVariable String id){
+    public Result<List<String>> getFilmInfo(@PathVariable String id){
         return filmService.selectFilmById(Integer.parseInt(id));
     }
 
+    //查询VIP专享
+    @RequestMapping("/vip")
+    public Result<List<Film>> getVipFilm(@RequestBody FilmQueryInfo filmQueryInfo){
+        int page = filmQueryInfo.getPage();
+        int size = filmQueryInfo.getSize();
+        String sort = filmQueryInfo.getSort();
+        if (!sort.equals("score") && !sort.equals("default")) sort = "popularity_" + sort;
+        return filmService.selectFilmByVIP(page,size,sort);
+    }
 
     //获取题材列表
     @RequestMapping("/genreList")
@@ -98,5 +107,11 @@ public class FilmController {
     @RequestMapping("/areaList")
     public Result<List<String>> getAreaList() {
         return filmService.getAreaList();
+    }
+
+    //查询用户收藏
+    @RequestMapping("/favorite/{account}")
+    public Result<List<Film>> getFavoriteFilm(@PathVariable String account){
+        return filmService.selectUserFavList(account);
     }
 }

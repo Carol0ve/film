@@ -1,10 +1,7 @@
 package cn.edu.scnu.serivce;
 
 import cn.edu.scnu.entity.*;
-import cn.edu.scnu.mapper.ActorMapper;
-import cn.edu.scnu.mapper.AreaMapper;
-import cn.edu.scnu.mapper.FilmMapper;
-import cn.edu.scnu.mapper.GenreMapper;
+import cn.edu.scnu.mapper.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,6 +23,10 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
     private AreaMapper areaMapper;
     @Autowired
     private ActorMapper actorMapper;
+    @Autowired
+    private FavoriteMapper favoriteMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     //根据题材
     public Result<List<Film>> selectFilmByGenre(int page, int size, List<String> genre, String sort) {
@@ -67,21 +68,6 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
         return getResult(sort,queryWrapper,pages);
     }
 
-    //获取题材列表
-    public Result<List<String>> getGenreList(){
-        QueryWrapper<Genre> queryWrapper=new QueryWrapper<>();
-        queryWrapper.select("DISTINCT name");
-        List<String> genreList = genreMapper.selectList(queryWrapper).stream().map(Genre::getName).toList();
-        return Result.success(genreList).add("length",genreList.size());
-    }
-
-    //获取地区列表
-    public Result<List<String>> getAreaList(){
-        QueryWrapper<Area> queryWrapper=new QueryWrapper<>();
-        queryWrapper.select("DISTINCT name");
-        List<String> areaList = areaMapper.selectList(queryWrapper).stream().map(Area::getName).toList();
-        return Result.success(areaList).add("length",areaList.size());
-    }
 
     //根据ID获取电影详情
     public Result<List<String>> selectFilmById(int id){
@@ -97,6 +83,13 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
         return result.add("filmInfo",film).add("areaInfo",areaList.stream().map(Area::getName).toList()).add("genreInfo",genreList.stream().map(Genre::getName).toList());
     }
 
+    //获取VIP专享电影
+    public Result<List<Film>> selectFilmByVIP(int page,int size,String sort){
+        QueryWrapper<Film> filmQueryWrapper=new QueryWrapper<>();
+        filmQueryWrapper.eq("need_vip","yes");
+        Page<Film> filmPage=new Page<>(page,size);
+        return getResult(sort,filmQueryWrapper,filmPage);
+    }
 
     //根据筛选条件得到有ID列表时
     public Result<List<Film>> getFilmList(int page, int size, String sort, Stream<Integer> integerStream) {
@@ -129,4 +122,29 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
             return result;
         }
     }
+
+    //获取题材列表
+    public Result<List<String>> getGenreList(){
+        QueryWrapper<Genre> queryWrapper=new QueryWrapper<>();
+        queryWrapper.select("DISTINCT name");
+        List<String> genreList = genreMapper.selectList(queryWrapper).stream().map(Genre::getName).toList();
+        return Result.success(genreList).add("length",genreList.size());
+    }
+
+    //获取地区列表
+    public Result<List<String>> getAreaList(){
+        QueryWrapper<Area> queryWrapper=new QueryWrapper<>();
+        queryWrapper.select("DISTINCT name");
+        List<String> areaList = areaMapper.selectList(queryWrapper).stream().map(Area::getName).toList();
+        return Result.success(areaList).add("length",areaList.size());
+    }
+
+    //根据账号获取收藏列表
+    public Result<List<Film>> selectUserFavList(String account) {
+        String email = userMapper.selectOne(new QueryWrapper<User>().eq("account", account)).getEmail();
+        List<Favorite> list=favoriteMapper.selectList(new QueryWrapper<Favorite>().eq("email",email));
+        return getFilmList(1,200,"default",list.stream().map(Favorite::getId));
+    }
+
+
 }
