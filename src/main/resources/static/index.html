@@ -56,7 +56,7 @@
 	
 	#daohang span{
 		/* background-color: #000000; */
-		color: #709bff;
+		color: #afe6ff;
 		
 	}
 			
@@ -112,41 +112,19 @@
 		<!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
 		</tr>
 		</table>
-		<!-- 导航栏 -->
-	
-		<!-- <div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#221d22;">
-	
-			<ul style=" list-style: none;margin-left: 28%">
-			<li>
-				<a href="index.html" style="text-decoration:none;">
-					<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">主页</span></a>
-			</li>	
-			<li>
-				<a href="rank.html"  style=" text-decoration:none;">
-					<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">排行</span></a>
-			</li>
-			<li>
-				<a href="member.html" style="text-decoration:none;">
-					<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">会员专享</span></a>
-			</li>
-				<li>
-					<a href="user.html" style="text-decoration:none;">
-						<span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">个人</span></a>
-				</li>
-			</ul>
-	
-		</div> -->
+		
 	</div>
 	
 	<!-- 主体 -->
 	<div id="content1" style="height: 1420px; width: 100%;">
-		<!-- 筛选队列 -->
+		
 		<hr >
+		<!-- 筛选队列 -->
 		<div id="sortlist" style="color: white; background-color: rgba(200,255,255,0.3); border-radius: 20px;height: 180px;width: 100%; ">
-			<div style="margin-left: 0px; float: left;">
-				<div style=" float: left;" >
-					<ul id="type" style="margin-top: 5px;">  
-						<li style="margin-left: 0px;margin-right: 10px; border: 0px solid #000000;background-color:#0173ff;"><span style="font-size:23px ; color: white;"><b>&nbsp;类型&nbsp;</b></span></li>
+			<div style="margin-left: 0px; float: left;width: 100%;height: 180px;">
+				<div style=" float: left;  width: 33%; height: 175px; border-right: 1px solid;" >
+					<p><span style="font-size:25px ; color: white;  font-family: 楷体;"><b>&nbsp;类型&nbsp;</b></span><p>
+					<ul id="type" >  
 						<li><a   onclick="sortMovies(this)">剧情</a></li>
 						<li><a   onclick="sortMovies(this)">犯罪</a></li>
 						<li><a   onclick="sortMovies(this)">爱情</a></li>
@@ -175,9 +153,9 @@
 					</ul>
 				</div>
 				
-				<div style=" float: left;">	
+				<div style=" float: left;  width: 33%; height: 175px;border-right: 1px solid;">	
+					<p><span style="font-size:25px ; color: white;  font-family: 楷体;"><b>&nbsp;地区&nbsp;</b></span><p>
 					<ul id="area">
-						<li style="margin-left: 0px;margin-right: 10px; border: 0px solid #000000;background-color: #0173ff;"><span style="font-size:23px ; color: white;"><b>&nbsp;地区&nbsp;</b></span></li>
 						<li><a   onclick="sortMovies(this)">中国大陆</a></li>
 						<li><a   onclick="sortMovies(this)">中国香港</a></li>
 						<li><a   onclick="sortMovies(this)">中国台湾</a></li>
@@ -202,9 +180,9 @@
 					</ul>
 				</div>
 				
-				<div style=" float: left;">	
+				<div style=" float: left;  width: 33%; height: 175px;">	
+				<p><span style="font-size:25px ; color: white;  font-family: 楷体;"><b>&nbsp;年代&nbsp;</b></span><p>
 					<ul id="year">
-						<li style="margin-left: 0px;margin-right: 10px; border: 0px solid #000000;background-color: #0173ff;"><span style="font-size:23px ; color: white;"><b>&nbsp;年代&nbsp;</b></span></li>
 						<li><a   onclick="sortMovies(this)">2020</a></li>
 						<li><a   onclick="sortMovies(this)">2010</a></li>
 						<li><a   onclick="sortMovies(this)">2000</a></li>
