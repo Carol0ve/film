@@ -74,4 +74,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     public void logout(String token){
         redisTemplate.delete(token);
     }
+
+    public void updateUsername(String token) {
+    }
 }

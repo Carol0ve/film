@@ -49,5 +49,9 @@ public class UserController {
         return Result.success("退出登录成功！");
     }
 
-
+    @RequestMapping("/username")
+    public Result<String> changeUsername(@RequestHeader("Authorization") String token){
+        userService.updateUsername(token);
+        return Result.success("修改成功！");
+    }
 }
