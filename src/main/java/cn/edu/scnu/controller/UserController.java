@@ -36,9 +36,8 @@ public class UserController {
 
     //用户开通VIP
     @RequestMapping("/user/vip")
-    public Result<String> activateVIP(@RequestBody Map<Object, Object> map) {
-        String email = (String) map.get("email");
-        userService.activateVip(email);
+    public Result<String> activateVIP(@RequestHeader("Authorization") String token) {
+        userService.activateVip(userService.getUserByToken(token).getEmail());
         return Result.success("开通VIP成功");
     }
 
