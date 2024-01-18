@@ -26,8 +26,6 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
     @Autowired
     private FavoriteMapper favoriteMapper;
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     private UserService userService;
 
     //根据题材

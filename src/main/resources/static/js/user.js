@@ -3,7 +3,7 @@
 $(document).ready(function () {
     //加载用户页面信息
     var token = document.getElementById("token");
-    email.innerText = localStorage.getItem('login_token');
+    token.innerText = localStorage.getItem('login_token');
 
     var username = document.getElementById("username");
     username.innerText = localStorage.getItem('login_username');
