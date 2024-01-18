@@ -42,16 +42,7 @@ $(document).ready(function () {
 		}
 	}else{
 		selectFilmById();
-		var collectButton = document.getElementById("collectMovie");
-		if(collect1 =="yes"){
-			collectButton.innerText = "已收藏";
-			collectButton.style.backgroundColor = "lightyellow";
-			collectButton.style.color = "grey";
-		}else{
-			collectButton.innerText = "收藏";
-			collectButton.style.backgroundColor = "gold";
-			collectButton.style.color = "black";
-		}
+		
 	} 
 });
 
@@ -234,6 +225,12 @@ function Logout(){
 	localStorage.setItem('login_account',"0");//防止为空
 	localStorage.removeItem('login_account');
 	
+	localStorage.setItem('token',"0");//防止为空
+	localStorage.removeItem('token');
+	
+	localStorage.setItem('account',"0");//防止为空
+	localStorage.removeItem('account');
+	
 	localStorage.setItem('is_vip',"0");//防止为空
 	localStorage.removeItem('is_vip');
 	
@@ -245,6 +242,12 @@ function Logout(){
 	
 	localStorage.setItem('skip',1);//防止为空
 	localStorage.removeItem('skip');
+	
+	localStorage.setItem('username',"0");//防止为空
+	localStorage.removeItem('username');
+	
+	localStorage.setItem('email',"0");//防止为空
+	localStorage.removeItem('email');
 	
 	window.location.href = 'login_register.html';
 }
@@ -348,6 +351,16 @@ function selectFilmById() {
             AREAS = result.map.areaInfo;
             TYPES = result.map.genreInfo;
 			collect1 = result.map.status;
+			var collectButton = document.getElementById("collectMovie");
+			if(collect1 =="yes"){
+				collectButton.innerText = "已收藏";
+				collectButton.style.backgroundColor = "lightyellow";
+				collectButton.style.color = "grey";
+			}else{
+				collectButton.innerText = "收藏";
+				collectButton.style.backgroundColor = "gold";
+				collectButton.style.color = "black";
+			}
             showDetail();
         }
     })

@@ -121,6 +121,12 @@ function Logout(){
 	localStorage.setItem('login_account',"0");//防止为空
 	localStorage.removeItem('login_account');
 	
+	localStorage.setItem('token',"0");//防止为空
+	localStorage.removeItem('token');
+	
+	localStorage.setItem('account',"0");//防止为空
+	localStorage.removeItem('account');
+	
 	localStorage.setItem('is_vip',"0");//防止为空
 	localStorage.removeItem('is_vip');
 	
@@ -132,6 +138,12 @@ function Logout(){
 	
 	localStorage.setItem('skip',1);//防止为空
 	localStorage.removeItem('skip');
+	
+	localStorage.setItem('username',"0");//防止为空
+	localStorage.removeItem('username');
+	
+	localStorage.setItem('email',"0");//防止为空
+	localStorage.removeItem('email');
 	
 	window.location.href = 'login_register.html';
 }
