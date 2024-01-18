@@ -110,9 +110,9 @@ public class FilmController {
     }
 
     //查询用户收藏
-    @RequestMapping("/favorite/{account}")
-    public Result<List<Film>> getFavoriteFilm(@PathVariable String account){
-        return filmService.selectUserFavList(account);
+    @RequestMapping("/favorite")
+    public Result<List<Film>> getFavoriteFilm(@RequestHeader("Authorization") String token){
+        return filmService.selectUserFavList(token);
     }
 
     @RequestMapping("/addToFav/{id}")
