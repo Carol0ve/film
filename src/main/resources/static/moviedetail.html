@@ -44,24 +44,25 @@
     }
 
 	#watch button{
-		width: 200px;
-		height: 60px;
-		font-size: 25px;
+		font-family: 隶书;
+		width: 170px;
+		height: 50px;
+		font-size: 30px;
 		border: 0px;
 		border-radius: 10px;
-		font-weight: bold;
+			
 	}
 </style>
 <center>
-    <body>
+    <body background="img/moviedetail_bg.jpg" style=" background-size:100%;">
 
     <!-- 头部 -->
     <div style="height: 98px;">
     	<table style="width: 93%;height: 40px;" >
     	<tr>
-    		<td style="font-size:36px;height: 0px;font-family: '华文彩云';letter-spacing: 3px;color: #66CCFF"><b>极点电影网</b>
+    		<td style="font-size:36px;height: 0px;font-family: '华文彩云';letter-spacing: 3px;color: #17a2ff"><b>极点电影网</b>
     		<td style="float: right;line-height: 30px;">
-    			<a onclick="Logout()" style="font-size:20px;text-decoration:underline;"><b>退出登录</b></a>&nbsp;&nbsp;
+    			<a onclick="Logout()" style="font-size:20px;text-decoration:underline;color: #2196F3;"><b>退出登录</b></a>&nbsp;&nbsp;
     			<span id="vip1" style="background-color: #999999;"><b>非VIP</b></span>
     		</td>
     	<!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
@@ -69,7 +70,7 @@
     	</table>
     	<!-- 导航栏 -->
     
-    	<div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#3CB371;">
+    	<div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#39a9b3;">
     
     		<ul style=" list-style: none;margin-left: 28%">
     		<li>
@@ -94,23 +95,19 @@
     </div>
 
 
-    <div id="" style="width: 100%; height: 800px; background-color: ghostwhite; ">
+    <div id="" style="width: 100%; height: 880px; background-color: rgba(255,255,255,0.5) ">
 
-        <div style="width: 100%; height: 35px; float: left;">
-            <!-- <span><a href="index.html">返回主页</a> -->
-            <span style="font-size: 25px;">电影详情</span>
-            </span>
+        <div style="width: 100%; height: 40px; float: left; ">
+            <span style="font-size: 28px; color: #0077AA; background-color: #f9f9f9; border-radius: 10px;">&nbsp;&nbsp;&nbsp;电影详情&nbsp;&nbsp;&nbsp;</span>
         </div>
         <hr>
         <div id="det" style="width: 100%; height: 750px; float: left;">
         </div>
         <hr>
         <div id="watch">
-			<button id="collectMovie" onclick="changeCollect()" style="background-color: gold">收藏
-			</button>
-			&nbsp;
-            <button onclick="watchMovie()" style="background-color: lightgreen">立即观看
-            </button>
+			<button id="collectMovie" onclick="changeCollect()" style="background-color: gold">收藏</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button onclick="watchMovie()" style="background-color: lightgreen">立即观看</button>
         </div>
     </div>
     </body>
