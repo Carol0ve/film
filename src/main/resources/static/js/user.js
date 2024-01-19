@@ -26,6 +26,8 @@ function becomeVip(){
 //退出登录删除所有本地数据
 var li_loginout = document.querySelector('.li_loginout')
 li_loginout.addEventListener('click', function(){
+	userLogout();
+	
 	localStorage.setItem('login_token',"0");//防止为空
 	localStorage.removeItem('login_token');
 	
@@ -74,6 +76,16 @@ function activateVIP() {
 			alert("VIP充值成功！");
 			var vip = document.getElementById("vip9");
 			vip.innerText = "yes";
+        }
+    })
+}
+
+function userLogout() {
+    $.ajax({
+        url: '/user/logout', headers: {"Authorization": localStorage.getItem('login_token')},
+        type: 'post',
+        contentType: 'application/json;charset=utf-8',
+        success: function (result) {
         }
     })
 }

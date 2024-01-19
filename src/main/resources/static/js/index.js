@@ -22,28 +22,32 @@ var request = {
 
 $(document).ready(function () {
     // 更新vip状态
-    var vip1 = document.getElementById("vip1");
-    if (is_vip == "yes") {
-        vip1.innerText = " VIP ";
-        vip1.style.backgroundColor = "red";
-    } else {
-        vip1.innerText = " 非VIP ";
-        vip1.style.backgroundColor = "gray";
-    }
-	if(table1!=null) {
-		table1.innerHTML = "";
-		if (localStorage.getItem('skip')) {
-			localStorage.setItem('skip', 0);
-			hangshu = 5;
-			request.actor = localStorage.getItem('movieactors');
-			selectFilmByActor();
-		} else {
-			getfilmlist();
-		}
+	if(localStorage.getItem('login_token')==null){
+		alert("您还未登录，请先登录！");
+		window.location.href = 'login_register.html';
 	}else{
-		selectFilmById();
-		
-	} 
+		var vip1 = document.getElementById("vip1");
+		if (is_vip == "yes") {
+		    vip1.innerText = " VIP ";
+		    vip1.style.backgroundColor = "red";
+		} else {
+		    vip1.innerText = " 非VIP ";
+		    vip1.style.backgroundColor = "gray";
+		}
+		if(table1!=null) {
+			table1.innerHTML = "";
+			if (localStorage.getItem('skip')) {
+				localStorage.setItem('skip', 0);
+				hangshu = 5;
+				request.actor = localStorage.getItem('movieactors');
+				selectFilmByActor();
+			} else {
+				getfilmlist();
+			}
+		}else{
+			selectFilmById();		
+		} 
+	}
 });
 
 //读取
@@ -219,6 +223,7 @@ function watchMovie() {
 
 //退出登录删除所有本地数据
 function Logout(){
+	userLogout();
 	localStorage.setItem('login_token',"0");//防止为空
 	localStorage.removeItem('login_token');
 	
@@ -460,27 +465,22 @@ function activateVIP(userInfo) {
     })
 }
 
-function userLogout(token) {
+function userLogout() {
     $.ajax({
-
-        url: '/user/logout', headers: {"Authorization": token},
+        url: '/user/logout', headers: {"Authorization": localStorage.getItem('login_token')},
         type: 'post',
         contentType: 'application/json;charset=utf-8',
-
         success: function (result) {
-
         }
     })
 }
 
-function inIt(token) {
+function inIt() {
     $.ajax({
-
-        url: '/index', headers: {"Authorization": token},
+        url: '/index', headers: {"Authorization": localStorage.getItem('login_token')},
         type: 'post',
         contentType: 'application/json;charset=utf-8',
         success: function (result) {
-
         }
     })
 }

@@ -124,6 +124,7 @@ function getfilmlist() {
 
 //退出登录删除所有本地数据
 function Logout(){
+	userLogout()
 	localStorage.setItem('login_token',"0");//防止为空
 	localStorage.removeItem('login_token');
 	
@@ -155,4 +156,14 @@ function Logout(){
 	localStorage.removeItem('email');
 	
 	window.location.href = 'login_register.html';
+}
+
+function userLogout() {
+    $.ajax({
+        url: '/user/logout', headers: {"Authorization": localStorage.getItem('login_token')},
+        type: 'post',
+        contentType: 'application/json;charset=utf-8',
+        success: function (result) {
+        }
+    })
 }
