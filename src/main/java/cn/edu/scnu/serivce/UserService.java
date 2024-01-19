@@ -75,6 +75,9 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         redisTemplate.delete(token);
     }
 
-    public void updateUsername(String token) {
+    public void updateUsername(String token,String newUsername) {
+        User userByToken = getUserByToken(token);
+        userByToken.setUsername(newUsername);
+        userMapper.updateById(userByToken);
     }
 }

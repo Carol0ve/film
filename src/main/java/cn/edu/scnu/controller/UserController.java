@@ -50,8 +50,9 @@ public class UserController {
     }
 
     @RequestMapping("/username")
-    public Result<String> changeUsername(@RequestHeader("Authorization") String token){
-        userService.updateUsername(token);
+    public Result<String> changeUsername(@RequestHeader("Authorization") String token,@RequestBody Map<Object,Object> map){
+        String username = (String) map.get("username");
+        userService.updateUsername(token,username);
         return Result.success("修改成功！");
     }
 }
