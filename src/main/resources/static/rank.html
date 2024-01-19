@@ -1,117 +1,117 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head>
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <meta charset="utf-8">
-    <title>排行榜</title>
-</head>
-<style type="text/css">
-
-    #b1 button {
-        font-size: 28px;
-        width: 200px;
-        height: 50px;
-        font-family: 楷体;
-        background-color: #FF8000;
-        border: 0px;
-        color: snow;
-        border-radius: 10px;
-    }
-    
-
-    #unit img {
-        border: 0;
-        height: 290px;
-        width: 200px;
-    }
-
-    #daohang li {
-        margin-left: -70px;
-        margin-right: 200px;
-        float: left;
-    }
-
-    li:hover {
-        background-color: yellowgreen;
-    }
-
-    #vip1 {
-        font-size: 25px;
-        text-decoration: none;
-        color: gold;
-        border: 1px solid black;
-    }
-    #unit{
-        width: 200px;
-        height: 380px;
-    }
-    #name{
-        color: #FF0000;
-    }
-
-</style>
-<center>
-    <body>
-
-    <!-- 头部 -->
-    <div style="height: 98px;">
-        <table style="width: 93%;height: 40px;">
-            <tr>
-                <td style="font-size:36px;height: 0px;font-family: 楷体;"><b>极点电影网</b>
-                <td style="float: right;line-height: 30px;">
-                    <a href="login.html" target="mainframe"
-                       style="font-size:20px;text-decoration:underline;"><b>退出登录</b></a>&nbsp;&nbsp;
-                    <span id="vip1" style="background-color: #999999;"><b>非VIP</b></span>
-                </td>
-                <!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
-            </tr>
-        </table>
-        <!-- 导航栏 -->
-
-        <div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#3CB371;">
-
-            <ul style=" list-style: none;margin-left: 35%">
-                <li>
-                    <a href="index.html" style="text-decoration:none;">
-                        <span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体"> 主页</span></a>
-                </li>
-                <li>
-                    <a href="rank.html" style=" text-decoration:none;">
-                        <span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体">排行</span></a>
-                </li>
-                <li>
-                    <a href="member.html" style="text-decoration:none;">
-                        <span style=" color:white; font-weight:bold; font-size:30px; font-family:楷体"> 会员</span></a>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-
-    <!-- 主体内容 -->
-    <hr>
-    <div style="width: 100%; height: 1300px; background-color: azure">
-        <div id="b1" style="width: 100%; height: 50px;">
-            <button id="week" onclick="sortMovies(this)">本周排行</button>
-            <button id="month" onclick="sortMovies(this)">本月排行</button>
-            <button id="all" onclick="sortMovies(this)">全部排行</button>
-            <button id="score" onclick="sortMovies(this)">按评分排行</button>
-        </div>
-        <hr>
-        <div style="width: 100%; height: 1150px;">
-            <table id="showmovies" style="margin-left:0px">
-            </table>
-        </div>
-
-        <hr>
-        <div style="margin-top: 10px; width: 100%;height: 50px;">
-            <button id="back" style="font-size: 18px;width: 70px;height: 30px; " onclick="backPage()">上一页</button>
-            第<span id="page" style="font-size: 20px;">1</span>页
-            <button id="next" style="font-size: 18px;width: 70px;height: 30px;" onclick="nextPage()">下一页</button>
-        </div>
-    </div>
-    </body>
-</center>
-<script type="text/javascript" src="js/rank.js">
-</script>
+<html>
+	<head>
+		<script src="js/jquery-1.8.3.min.js"></script>
+		<meta charset="utf-8">
+		<title>排行榜</title>
+	</head>
+	<style type="text/css">
+			
+	#b1	button{
+			font-size: 28px ;
+			width: 200px;
+			height: 45px;
+			font-family: 楷体;
+			background-color: #FF8000;
+			border: 2px solid;
+			color: snow;
+			border-radius: 10px;
+		}
+	#unit{
+		width: 230px;
+		height: 380px;
+	}
+	#name{
+		color: #FF0000;
+	}	
+	#unit img{
+		 border:0 ;
+		 height:290px;
+		 width:200px;
+	}
+	
+	#daohang li{
+				margin-left: -70px;
+				margin-right: 200px;
+				float: left;
+			}
+			li:hover{background-color: #9df8f9;
+			}
+	#vip1{
+		font-size:25px;
+		text-decoration:none;
+		color: gold ;
+		border: 1px solid black;
+	}	
+	
+	
+	</style>
+	<center>
+	<body background="img/rank_bg.jpg" style=" background-size:100%;">
+		
+		<!-- 头部 -->
+		<div style="height: 98px;">
+			<table style="width: 93%;height: 40px;" >
+			<tr>
+				<td style="font-size:36px;height: 0px;font-family: '华文彩云';letter-spacing: 3px;color: #feff9b"><b>极点电影网</b>
+				<td style="float: right;line-height: 30px;">
+					<a onclick="Logout()" style="color: #ffff74 ;font-size:20px;text-decoration:underline;"><b>退出登录</b></a>&nbsp;&nbsp;
+					<span id="vip1" style="background-color: #999999;"><b>非VIP</b></span>
+				</td>
+			<!-- <td style="text-align:right;"><img src="../static/image/ttel.jpg"></td> -->
+			</tr>
+			</table>
+			<!-- 导航栏 -->
+			
+			<div id="daohang" style="width: 100%; height: 34px; align-content: center;background-color:#fff8e4; ">
+		
+				<ul style=" list-style: none;margin-left: 28%">
+				<li>
+					<a href="index.html" style="text-decoration:none;">
+						<span style=" color: #df7b07; font-weight:bold; font-size:30px; font-family:楷体">主页</span></a>
+				</li>	
+				<li>
+					<a href="rank.html"  style=" text-decoration:none;">
+						<span style=" color: #df7b07; font-weight:bold; font-size:30px; font-family:楷体">排行</span></a>
+				</li>
+				<li>
+					<a href="member.html" style="text-decoration:none;">
+						<span style=" color: #df7b07; font-weight:bold; font-size:30px; font-family:楷体">会员专享</span></a>
+				</li>
+					<li>
+						<a href="user.html" style="text-decoration:none;">
+						<span style=" color: #df7b07; font-weight:bold; font-size:30px; font-family:楷体">个人</span></a>
+					</li>
+				</ul>
+		
+			</div>
+		</div>
+		<!-- 主体内容 -->
+	<!-- 	<hr > -->
+		<div id="" style="width: 100%; height: 1300px; background-color:rgba(200,255,255,0.4)" >
+			<br>
+			<div id="b1" style="width: 100%; height: 50px;">
+				<button id="week" onclick="sortMovies(this)">本周排行</button>
+				<button id="month" onclick="sortMovies(this)">本月排行</button>
+				<button id="all" onclick="sortMovies(this)">全部排行</button>
+				<button id="score" onclick="sortMovies(this)">按评分排行</button>
+			</div>
+			<hr>
+			<div id="" style="width: 100%; height: 1150px;">
+				<table id="showmovies" style="margin-left:0px">
+					
+				</table>
+			</div>
+			
+			<hr>
+			<div id="" style="margin-top: 10px; width: 100%;height: 50px;">
+				<button id="back" style="font-size: 18px;width: 70px;height: 30px; "onclick="backPage()">上一页</button>
+				第<span id="page" style="font-size: 20px;">1</span>页
+				<button id="next" style="font-size: 18px;width: 70px;height: 30px;"onclick="nextPage()">下一页</button>
+			</div>
+		</div>
+	</body>
+	</center>
+	<script type="text/javascript" src="js/rank.js">
+	</script>
 </html>

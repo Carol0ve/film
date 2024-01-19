@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Modify</title>
+	<link rel="stylesheet"  href="style.css">
+</head>
+
+<body>
+	<div class="container">
+		<span></span>
+		<span></span>
+		<span></span>
+		<form id="signinForm">
+			<h2>Modify</h2>
+			<div class="inputBox">
+				<input id="username" type="text" placeholder="原用户名">
+			</div>
+			<div class="inputBox">
+				<input id="newUsername" type="text" placeholder="新用户名">
+			</div>
+			<div class="inputBox group">
+				<a href="./user.html">返回个人</a>
+			</div>
+			<div class="inputBox">
+				<input id="inputsub" type="submit" value="确认修改">
+			</div>
+		</form>
+
+	</div>
+<script src="./js/jquery-1.4.2.js"></script>	
+<script>
+	var inputsub = document.querySelector('#inputsub')//确认修改
+	
+	inputsub.addEventListener('click', function(){
+		event.preventDefault();
+		var username = localStorage.getItem('login_username')//获取原用户名
+		var newusername = document.getElementById('newUsername')//获取新用户名的值
+		var token = localStorage.getItem('login_token')//获取本地token
+		var modify_userInfo = {
+			token: localStorage.getItem('login_token'),
+			newUsername : newusername.value
+		}
+		console.log(modify_userInfo.newUsername)
+		$.ajax({
+			url: '/username',
+			type: 'post',
+			contentType: 'application/json;charset=utf-8',
+			data: JSON.stringify(modify_userInfo),
+			beforeSend: function(xhr) {
+				// 在发送请求之前添加请求头
+				xhr.setRequestHeader('Authorization',token);
+			},
+			success: function (modify_result) {
+				// 处理成功的结果或执行成功时的操作
+				if (modify_result.code === 1) {
+						localStorage.setItem('username', newusername.value);
+						//登录成功，跳转到用户页面
+						window.location.href = './user.html';
+				} else {
+						alert("修改失败！");
+				}
+			}
+		});
+	})
+</script>
+</body>
+</html>

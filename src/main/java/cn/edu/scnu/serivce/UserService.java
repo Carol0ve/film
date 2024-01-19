@@ -1,17 +1,13 @@
 package cn.edu.scnu.serivce;
 
-import cn.edu.scnu.entity.Film;
 import cn.edu.scnu.entity.User;
 import cn.edu.scnu.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -73,5 +69,11 @@ public class UserService extends ServiceImpl<UserMapper, User> {
 
     public void logout(String token){
         redisTemplate.delete(token);
+    }
+
+    public void updateUsername(String token,String newUsername) {
+        User userByToken = getUserByToken(token);
+        userByToken.setUsername(newUsername);
+        userMapper.updateById(userByToken);
     }
 }

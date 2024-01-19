@@ -26,8 +26,6 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
     @Autowired
     private FavoriteMapper favoriteMapper;
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     private UserService userService;
 
     //根据题材
@@ -152,8 +150,8 @@ public class FilmService extends ServiceImpl<FilmMapper, Film> {
     }
 
     //根据账号获取收藏列表
-    public Result<List<Film>> selectUserFavList(String account) {
-        String email = userMapper.selectOne(new QueryWrapper<User>().eq("account", account)).getEmail();
+    public Result<List<Film>> selectUserFavList(String token) {
+        String email=userService.getUserByToken(token).getEmail();
         List<Favorite> list = favoriteMapper.selectList(new QueryWrapper<Favorite>().eq("email", email));
         return getFilmList(1, 200, "default", list.stream().map(Favorite::getId));
     }
