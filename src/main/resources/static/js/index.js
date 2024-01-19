@@ -182,11 +182,11 @@ function toDetail(id){
 }
 
 function showDetail() {
-    var ID =filmdetial.id;
-    var NAME = filmdetial.filmName;
-    var INTRO = filmdetial.introduction;
-    var SCORE = filmdetial.score;
-    var YEAR = filmdetial.year;
+    var ID =filmdetail.id;
+    var NAME = filmdetail.filmName;
+    var INTRO = filmdetail.introduction;
+    var SCORE = filmdetail.score;
+    var YEAR = filmdetail.year;
     var ACTORS="";
     var AREA="";
     var TYPE="";
@@ -352,7 +352,7 @@ function selectFilmById() {
 		},
         success: function (result) {
             filmactor = result.data;
-            filmdetial = result.map.filmInfo;
+            filmdetail = result.map.filmInfo;
             AREAS = result.map.areaInfo;
             TYPES = result.map.genreInfo;
 			collect1 = result.map.status;
