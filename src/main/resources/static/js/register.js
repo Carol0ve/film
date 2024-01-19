@@ -9,10 +9,10 @@ register_btn.addEventListener('click', function(){
   const register_passwordagin = document.querySelector('.register_passwordagin')
 
   const register_userInfo = {
-    register_email: register_email.value,
-    register_username: register_username.value,
-    register_account: register_account.value,
-    register_password: register_password.value,
+    email: register_email.value,
+    username: register_username.value,
+    account: register_account.value,
+    password: register_password.value,
   };
   // console.log(register_userInfo.register_account,register_userInfo.register_email)
   // 判断是否存在未输入
@@ -28,7 +28,7 @@ register_btn.addEventListener('click', function(){
               // 处理成功的结果或执行成功时的操作
               if (register_result.code === 1) {
                   //注册成功，跳转到登录界面
-                  window.location.href = './login.html';
+                  window.location.href = './login_register.html';
               } else {
                   alert("注册失败！请尝试重新注册");
               }
