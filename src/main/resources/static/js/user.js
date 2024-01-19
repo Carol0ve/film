@@ -64,11 +64,11 @@ li_loginout.addEventListener('click', function(){
 function activateVIP() {
     $.ajax({
         url: '/user/vip',
-		headers: {
-			"Authorization": localStorage.getItem('login_token')
-		},
         type: 'post',
         contentType: 'application/json;charset=utf-8',
+		data:JSON.stringify({
+			"email":localStorage.getItem("email")
+		}),
         success: function (result) {
 			localStorage.setItem('is_vip', "yes");
 			alert("VIP充值成功！");

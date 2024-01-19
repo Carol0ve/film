@@ -25,9 +25,9 @@ login_btn.addEventListener('click', function(){
 			//账号密码正确，将token和账号保存在本地
 			localStorage.setItem('login_token', login_result.map.token);
 			localStorage.setItem('login_account', login_account.value);
-			localStorage.setItem('email', login_result.email);
-			localStorage.setItem('username', login_result.username);
-			localStorage.setItem('is_vip', login_result.isVip);
+			localStorage.setItem('email', login_result.data.email);
+			localStorage.setItem('username', login_result.data.username);
+			localStorage.setItem('is_vip', login_result.data.isVip);
 			
             //登录成功，跳转到主页面
             window.location.href = './index.html';

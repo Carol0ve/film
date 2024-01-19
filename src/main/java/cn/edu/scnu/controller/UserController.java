@@ -36,8 +36,9 @@ public class UserController {
 
     //用户开通VIP
     @RequestMapping("/user/vip")
-    public Result<String> activateVIP(@RequestHeader("Authorization") String token) {
-        userService.activateVip(userService.getUserByToken(token).getEmail());
+    public Result<String> activateVIP(@RequestBody Map<Object,Object> map) {
+        String email= (String) map.get("email");
+        userService.activateVip(email);
         return Result.success("开通VIP成功");
     }
 
@@ -51,7 +52,7 @@ public class UserController {
 
     @RequestMapping("/username")
     public Result<String> changeUsername(@RequestHeader("Authorization") String token,@RequestBody Map<Object,Object> map){
-        String username = (String) map.get("username");
+        String username = (String) map.get("newUsername");
         userService.updateUsername(token,username);
         return Result.success("修改成功！");
     }
