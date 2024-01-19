@@ -14,9 +14,7 @@
 		<span></span>
 		<form id="signinForm">
 			<h2>Modify</h2>
-			<div class="inputBox">
-				<input id="username" type="text" placeholder="原用户名">
-			</div>
+			
 			<div class="inputBox">
 				<input id="newUsername" type="text" placeholder="新用户名">
 			</div>
@@ -35,7 +33,7 @@
 	
 	inputsub.addEventListener('click', function(){
 		event.preventDefault();
-		var username = localStorage.getItem('login_username')//获取原用户名
+	
 		var newusername = document.getElementById('newUsername')//获取新用户名的值
 		var token = localStorage.getItem('login_token')//获取本地token
 		var modify_userInfo = {
